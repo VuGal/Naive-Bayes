@@ -20,8 +20,12 @@ The most important files and directories in the repository:
 - *tests* directory -> contains unit tests and acceptance tests written with use of *pytest* library
 - *docs* directory -> contains a project documentation in *.PDF* format
 
-Note
+Notes
 ====
 
 This project has been set up using PyScaffold 3.2.3. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
+
+This project was developed with use of virtual environments, created with virtualenv 20.2.2.
+
+This project was tested on Ubuntu 20.04 LTS.
