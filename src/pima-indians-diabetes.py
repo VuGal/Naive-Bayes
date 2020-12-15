@@ -1,2 +1,2 @@
-# This file will hold Naive Bayes classifier implementation for 'pima-indians-diabetes.csv' dataset.
+# This file will hold the Naive Bayes classifier implementation for 'pima-indians-diabetes.csv' dataset.
 
