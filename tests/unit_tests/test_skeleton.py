@@ -3,8 +3,8 @@
 import pytest
 from naive_bayes.skeleton import fib
 
-__author__ = "Wojciech Gałecki"
-__copyright__ = "Wojciech Gałecki"
+__author__ = "Wojciech Gałecki, Karolina Rapacz"
+__copyright__ = "Wojciech Gałecki, Karolina Rapacz"
 __license__ = "mit"
 
 
