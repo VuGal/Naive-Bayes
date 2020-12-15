@@ -17,7 +17,7 @@ The most important files and directories in the repository:
 
 - main.py -> main interactive script which runs a specific action related to the project
 - *src* directory -> contains a NaiveBayesClassifier class along with scripts running the algorithm for the specific data sets
-- *tests* directory -> contains unit tests and acceptance tests written with use of *pytest* library
+- *tests* directory -> contains unit tests and acceptance tests (including comparison with *scikit-learn* library) written with use of *pytest* library
 - *docs* directory -> contains a project documentation in *.PDF* format
 
 Notes
