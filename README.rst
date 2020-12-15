@@ -10,8 +10,18 @@ It was created as a part of "Programowanie w językach skryptowych - Python i Li
 Authors: Wojciech Gałecki, Karolina Rapacz
 
 
+Installation guide
+==================
+
+(tested on Ubuntu 20.04 LTS)
+
+Go to the main project directory (e.g. */home/user/Naive-Bayes*) and run the following command: *pip3 install -e .*
+
+Now you can run *main.py* script and execute all actions that it offers.
+
+
 Information about the repository
-===========
+================================
 
 The most important files and directories in the repository:
 
@@ -20,8 +30,9 @@ The most important files and directories in the repository:
 - *tests* directory -> contains unit tests and acceptance tests (including comparison with *scikit-learn* library) written with use of *pytest* library
 - *docs* directory -> contains a project documentation in *.PDF* format
 
+
 Notes
-====
+=====
 
 This project has been set up using PyScaffold 3.2.3. For details and usage
 information on PyScaffold see https://pyscaffold.org/.
