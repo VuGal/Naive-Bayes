@@ -7,6 +7,8 @@ This project contains a Naive Bayes classifier implementation along with tests a
 
 It was created as a part of "Programowanie w językach skryptowych - Python i Linux Bash" college subject.
 
+Authors: Wojciech Gałecki, Karolina Rapacz
+
 
 Description
 ===========
