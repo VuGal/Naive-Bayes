@@ -10,7 +10,7 @@ It was created as a part of "Programowanie w językach skryptowych - Python i Li
 Authors: Wojciech Gałecki, Karolina Rapacz
 
 
-Description
+Information about the repository
 ===========
 
 The most important files and directories in the repository:
