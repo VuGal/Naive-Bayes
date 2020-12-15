@@ -26,9 +26,10 @@ def main():
     print('Scores: %s' % scores)
     print('Mean Accuracy: %.3f%%' % (sum(scores) / float(len(scores))))
 
+
 if __name__ == "__main__":
 
     try:
         main()
     except:
-        print('\nPodczas dzialania programu wystapil blad!\n')
+        print('\nAn error has occurred during the program execution!\n')
