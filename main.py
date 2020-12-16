@@ -14,19 +14,23 @@ def main():
     print('Welcome to the Naive Bayes Classifier project!')
     print('==============================================')
 
-    print('\nChoose the action:')
-    print('\n1. Run the Naive Bayes implementation using Iris dataset.')
-    print('2. Run the Naive Bayes implementation using Pima Indians Diabetes dataset.')
-    print('3. Run unit tests')
-    print('4. Run acceptance tests\n')
-
+    returned_from_function = True
 
     while True:
+
+        if returned_from_function == True:
+            print('\nChoose the action:')
+            print('\n1. Run the Naive Bayes implementation using Iris dataset.')
+            print('2. Run the Naive Bayes implementation using Pima Indians Diabetes dataset.')
+            print('3. Run unit tests')
+            print('4. Run acceptance tests\n')
+
+        returned_from_function = False
 
         try:
             choice = input('Choice: ')
         except KeyboardInterrupt:
-            print('Goodbye!')
+            print('\n\nGoodbye!\n')
             sys.exit()
 
         if choice not in ['1', '2', '3', '4']:
@@ -37,36 +41,44 @@ def main():
             try:
                 iris = Iris()
                 iris.run()
-                break
+                returned_from_function = True
+                continue
             except KeyboardInterrupt:
-                break
+                returned_from_function = True
+                continue
 
         elif choice == '2':
 
             try:
                 pid = PimaIndiansDiabetes()
                 pid.run()
-                break
+                returned_from_function = True
+                continue
             except KeyboardInterrupt:
-                break
+                returned_from_function = True
+                continue
 
         elif choice == '3':
 
             try:
                 output = subprocess.run(f'py.test tests/unit_tests', shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
                 print(f'{output}')
-                break
+                returned_from_function = True
+                continue
             except KeyboardInterrupt:
-                break
+                returned_from_function = True
+                continue
 
         elif choice == '4':
 
             try:
                 output = subprocess.run(f'py.test tests/acceptance_tests', shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
-                print(f'{output}') 
-                break
+                print(f'{output}')
+                returned_from_function = True
+                continue
             except KeyboardInterrupt:
-                break
+                returned_from_function = True
+                continue
 
         else:
             raise
