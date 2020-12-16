@@ -1,31 +1,41 @@
 #!/usr/bin/env python3
 
-# This file holds the Naive Bayes classifier implementation for 'iris.csv' dataset.
+# This file holds the Naive Bayes classifier implementation for 'pima-indians-diabetes.csv' dataset.
 
 import csv
 from random import seed
 from naive_bayes import NaiveBayesClassifier
 
 
-class Iris:
+class PimaIndiansDiabetes:
 
 
     def __init__(self):
 
-        self.dataset_filename = 'datasets/iris.csv'
-        self.description_filename = 'datasets/iris.names'
+        self.dataset_filename = 'datasets/pima-indians-diabetes.csv'
+        self.description_filename = 'datasets/pima-indians-diabetes.names'
         self.nbc = NaiveBayesClassifier()
         self.dataset = self.nbc.load_dataset_from_csv(self.dataset_filename)
 
 
     def data_preprocessing(self):
 
-        seed(1)
-
         for i in range(len(self.dataset[0]) - 1):
             self.nbc.string_column_to_float(self.dataset, i)
 
-        self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
+        # self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
+
+        column = len(self.dataset[0]) - 1
+
+        data = dict()
+        data['0'] = 0
+        data['1'] = 1
+
+        print('0 => 0')
+        print('1 => 1')
+
+        for row in self.dataset:
+            row[column] = data[row[column]]
 
 
     def classify_data(self):
@@ -33,10 +43,14 @@ class Iris:
         print('\nEnter the data to be classified.\n')
 
         attributes = {
-            'Sepal length [cm]: ' : 0.0,
-            'Sepal width [cm]: ' : 0.0,
-            'Petal length [cm]: ' : 0.0,
-            'Petal width [cm]: ' : 0.0
+            'Number of times pregnant: ' : 0.0,
+            'Plasma glucose concentration a 2 hours in an oral glucose tolerance test: ' : 0.0,
+            'Diastolic blood pressure (mm Hg): ' : 0.0,
+            'Triceps skin fold thickness (mm): ' : 0.0,
+            '2-Hour serum insulin (mu U/ml): ' : 0.0,
+            'Body mass index (weight in kg/(height in m)^2): ' : 0.0,
+            'Diabetes pedigree function: ' : 0.0,
+            'Age (years): ' : 0.0
         }
 
         for attr in attributes:
@@ -74,17 +88,14 @@ class Iris:
         print(f'\nThe entered entity was classified as: {label}')
 
 
-    def calculate_accuracy(self, n_folds=5):
+    def calculate_accuracy(self):
 
+        n_folds = 5
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
-        print('\n\nCalculating the accuracy of the classifier using the iris.csv dataset...')
+        print('\n\nCalculating the accuracy of the classifier using the pima-indians-diabetes.csv dataset...')
         print('\nResampling: k-fold cross validation split')
-
-        accuracy = (sum(scores) / float(len(scores)))
-        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)}\n')
-
-        return accuracy
+        print('\nAccuracy (5 folds): %.3f%%\n' % (sum(scores) / float(len(scores))))
 
 
     def show_dataset_description(self):
@@ -113,9 +124,11 @@ class Iris:
 
     def run(self):
 
+        seed(1)
+
         print('\n=================================')
-        print('          Iris dataset')
-        print('=================================\n')
+        print('   Pima Indians Diabetes dataset')
+        print('=================================')
 
         self.data_preprocessing()
 
@@ -187,8 +200,8 @@ class Iris:
 
 def main():
 
-    iris = Iris()
-    iris.run()
+    pid = PimaIndiansDiabetes()
+    pid.run()
 
 
 if __name__ == "__main__":
@@ -196,5 +209,5 @@ if __name__ == "__main__":
     try:
         main()
     except:
-         print('\nAn error has occurred during the program execution!\n')
+        print('\nAn error has occurred during the program execution!\n')
 

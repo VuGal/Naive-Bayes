@@ -2,7 +2,7 @@
 
 from csv import reader
 from math import pi, sqrt, exp
-from random import seed, randrange
+from random import randrange
 
 
 class NaiveBayesClassifier:
@@ -210,30 +210,3 @@ class NaiveBayesClassifier:
 
         return scores
 
-
-def main():
-
-    seed(1)
-
-    nbc = NaiveBayesClassifier()
-
-    filename = 'iris.csv'
-    dataset = nbc.load_dataset_from_csv(filename)
-
-    for i in range(len(dataset[0]) - 1):
-        nbc.string_column_to_float(dataset, i)
-
-    nbc.string_column_to_int(dataset, len(dataset[0]) - 1)
-
-    n_folds = 5
-    scores = nbc.evaluate_algorithm(dataset, n_folds)
-
-    print('Scores: %s' % scores)
-    print('Mean Accuracy: %.3f%%' % (sum(scores) / float(len(scores))))
-
-if __name__ == "__main__":
-
-    try:
-        main()
-    except:
-        print('\nPodczas dzialania programu wystapil blad!\n')
