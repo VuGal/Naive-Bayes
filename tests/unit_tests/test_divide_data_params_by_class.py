@@ -1,5 +1,4 @@
 from naive_bayes import NaiveBayesClassifier
-import pytest_mock as mocker
 
 
 def test_divide_data_params_by_class():
