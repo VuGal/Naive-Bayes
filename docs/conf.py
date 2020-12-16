@@ -35,7 +35,7 @@ except ImportError:
     from sphinx import apidoc
 
 output_dir = os.path.join(__location__, "api")
-module_dir = os.path.join(__location__, "../src/naive_bayes")
+module_dir = os.path.join(__location__, "../src/")
 try:
     shutil.rmtree(output_dir)
 except FileNotFoundError:
@@ -82,7 +82,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Naive-Bayes'
-copyright = u'2020, Wojciech Gałecki'
+copyright = u'2020, Wojciech Gałecki, Karolina Rapacz'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
