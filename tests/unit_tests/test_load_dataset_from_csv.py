@@ -5,7 +5,7 @@ def test_load_dataset_from_csv():
 
     classifier = NaiveBayesClassifier()
 
-    csv_filename = '../../datasets/iris.csv'
+    csv_filename = f'datasets/iris.csv'
 
     data_0 = ['5.1', '3.5', '1.4', '0.2', 'Iris-setosa']
     data_2 = ['4.7', '3.2', '1.3', '0.2', 'Iris-setosa']

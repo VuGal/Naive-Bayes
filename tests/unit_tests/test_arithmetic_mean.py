@@ -1,4 +1,3 @@
-import pytest
 from naive_bayes import NaiveBayesClassifier
 
 def test_arithmetic_mean():
