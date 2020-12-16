@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
-# This file will contain the main script of the project
+# This file contains the main script of the project
 
 import sys
 import subprocess
+from src.iris import Iris
+from src.pima_indians_diabetes import PimaIndiansDiabetes
 
 
 def main():
@@ -33,7 +35,8 @@ def main():
         elif choice == '1':
 
             try:
-                print('Iris NB implementation.')
+                iris = Iris()
+                iris.run()
                 break
             except KeyboardInterrupt:
                 break
@@ -41,7 +44,8 @@ def main():
         elif choice == '2':
 
             try:
-                print('PID NB implementation.')
+                pid = PimaIndiansDiabetes()
+                pid.run()
                 break
             except KeyboardInterrupt:
                 break

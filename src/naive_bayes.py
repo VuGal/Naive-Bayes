@@ -209,3 +209,4 @@ class NaiveBayesClassifier:
             scores.append(accuracy)
 
         return scores
+
