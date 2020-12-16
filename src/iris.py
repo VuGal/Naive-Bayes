@@ -2,7 +2,7 @@
 
 # This file holds the Naive Bayes classifier implementation for 'iris.csv' dataset.
 
-from csv import reader
+import csv
 from random import seed
 from naive_bayes import NaiveBayesClassifier
 
@@ -43,20 +43,26 @@ class Iris:
 
     def show_dataset_description(self):
 
-        csv_reader = reader(self.description_filename, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        with open(self.description_filename, 'r') as f:
 
-        for row in csv_reader:
+            csv_reader = csv.reader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-            print(row)
+            for row in csv_reader:
+                for word in row:
+                    print(word, end='')
+                print()
 
 
     def show_dataset_rows(self):
 
-        csv_reader = reader(self.dataset_filename, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        with open(self.dataset_filename, 'r') as f:
 
-        for row in csv_reader:
+            csv_reader = csv.reader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
-            print(row)
+            for row in csv_reader:
+                for i in range(len(row)-1):
+                    print(row[i], end=',')
+                print(row[len(row)-1])
 
 
     def run(self):
@@ -72,16 +78,18 @@ class Iris:
 
         self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
 
-        print()
-
-        print('\nChoose the action:')
-        print('\n1. Classify new data.')
-        print('2. Calculate algorithm accuracy.')
-        print('3. Show dataset rows.')
-        print('4. Show dataset description\n')
-
+        returned_from_function = True
 
         while True:
+
+            if returned_from_function == True:
+                print('\nChoose the action:')
+                print('\n1. Classify new data.')
+                print('2. Calculate algorithm accuracy.')
+                print('3. Show dataset description.')
+                print('4. Show dataset rows.\n')
+
+            returned_from_function = False
 
             choice = input('Choice: ')
 
@@ -92,32 +100,40 @@ class Iris:
 
                 try:
                     self.classify_data()
+                    returned_from_function = True
                     continue
                 except KeyboardInterrupt:
+                    returned_from_function = True
                     continue
 
             elif choice == '2':
 
                 try:
                     self.calculate_accuracy()
+                    returned_from_function = True
                     continue
                 except KeyboardInterrupt:
+                    returned_from_function = True
                     continue
 
             elif choice == '3':
 
                 try:
                     self.show_dataset_description()
+                    returned_from_function = True
                     continue
                 except KeyboardInterrupt:
+                    returned_from_function = True
                     continue
 
             elif choice == '4':
 
                 try:
                     self.show_dataset_rows()
+                    returned_from_function = True
                     continue
                 except KeyboardInterrupt:
+                    returned_from_function = True
                     continue
 
             else:
@@ -132,8 +148,8 @@ def main():
 
 if __name__ == "__main__":
 
-  #  try:
+    try:
         main()
-#    except:
- #       print('\nAn error has occurred during the program execution!\n')
+    except:
+         print('\nAn error has occurred during the program execution!\n')
 
