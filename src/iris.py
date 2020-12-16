@@ -20,15 +20,48 @@ class Iris:
 
     def classify_data(self):
 
-#        print('Enter the data to be classified')
+        print('\nEnter the data to be classified.\n')
 
-        print('\nTrying to classify the new data: [5.6, 3.1, 4.0, 1.2]')
+        attributes = {
+            'Sepal length [cm]: ' : 0.0,
+            'Sepal width [cm]: ' : 0.0,
+            'Petal length [cm]: ' : 0.0,
+            'Petal width [cm]: ' : 0.0
+        }
+
+        for attr in attributes:
+
+            correct_input = False
+
+            while correct_input == False:
+
+                try:
+                    attr_value = float(input(attr))
+                    correct_input = True
+                except:
+                    print('Incorrect value! Please enter an integer or a floating point number.')
+
+            attributes[attr] = attr_value
+
+        print('\nEntered attributes:\n')
+
+        for attr in attributes:
+            print(f'{attr}{attributes[attr]}')
+
+        print()
+
+        confirm_sign = ''
+
+        while confirm_sign not in ['y', 'Y', 'n', 'N']:
+            confirm_sign = input('Confirm (y/n): ')
+
+        if confirm_sign in ['n', 'N']:
+            return
 
         model = self.nbc.divide_data_params_by_class(self.dataset)
-        row = [5.6, 3.1, 4.0, 1.2]
-        label = self.nbc.predict(model, row)
+        label = self.nbc.predict(model, list(attributes.values()))
 
-        print(f'\nPredicted: {label}')
+        print(f'\nThe entered entity was classified as: {label}')
 
 
     def calculate_accuracy(self):
@@ -87,14 +120,15 @@ class Iris:
                 print('\n1. Classify new data.')
                 print('2. Calculate algorithm accuracy.')
                 print('3. Show dataset description.')
-                print('4. Show dataset rows.\n')
+                print('4. Show dataset rows.')
+                print('5. Go back to the main menu.\n')
 
             returned_from_function = False
 
             choice = input('Choice: ')
 
-            if choice not in ['1', '2', '3', '4']:
-                print('Wrong choice! Please choose option 1-4.')
+            if choice not in ['1', '2', '3', '4', '5']:
+                print('Wrong choice! Please choose option 1-5.')
 
             elif choice == '1':
 
@@ -135,6 +169,9 @@ class Iris:
                 except KeyboardInterrupt:
                     returned_from_function = True
                     continue
+
+            elif choice == '5':
+                break
 
             else:
                 raise

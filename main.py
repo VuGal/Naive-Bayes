@@ -22,8 +22,9 @@ def main():
             print('\nChoose the action:')
             print('\n1. Run the Naive Bayes implementation using Iris dataset.')
             print('2. Run the Naive Bayes implementation using Pima Indians Diabetes dataset.')
-            print('3. Run unit tests')
-            print('4. Run acceptance tests\n')
+            print('3. Run unit tests.')
+            print('4. Run acceptance tests.')
+            print('5. Exit the program.\n')
 
         returned_from_function = False
 
@@ -33,8 +34,8 @@ def main():
             print('\n\nGoodbye!\n')
             sys.exit()
 
-        if choice not in ['1', '2', '3', '4']:
-            print('Wrong choice! Please choose option 1-4.')
+        if choice not in ['1', '2', '3', '4', '5']:
+            print('Wrong choice! Please choose option 1-5.')
 
         elif choice == '1':
 
@@ -79,6 +80,11 @@ def main():
             except KeyboardInterrupt:
                 returned_from_function = True
                 continue
+
+        elif choice == '5':
+
+            print('\n\nGoodbye!\n')
+            sys.exit()
 
         else:
             raise

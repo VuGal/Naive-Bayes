@@ -20,15 +20,52 @@ class PimaIndiansDiabetes:
 
     def classify_data(self):
 
-#        print('Enter the data to be classified')
+        print('\nEnter the data to be classified.\n')
 
-        print('\nTrying to classify the new data: [2, 100, 70, 31, 120, 27.4, 0.295, 56]')
+        attributes = {
+            'Number of times pregnant: ' : 0.0,
+            'Plasma glucose concentration a 2 hours in an oral glucose tolerance test: ' : 0.0,
+            'Diastolic blood pressure (mm Hg): ' : 0.0,
+            'Triceps skin fold thickness (mm): ' : 0.0,
+            '2-Hour serum insulin (mu U/ml): ' : 0.0,
+            'Body mass index (weight in kg/(height in m)^2): ' : 0.0,
+            'Diabetes pedigree function: ' : 0.0,
+            'Age (years): ' : 0.0
+        }
+
+        for attr in attributes:
+
+            correct_input = False
+
+            while correct_input == False:
+
+                try:
+                    attr_value = float(input(attr))
+                    correct_input = True
+                except:
+                    print('Incorrect value! Please enter an integer or a floating point number.')
+
+            attributes[attr] = attr_value
+
+        print('\nEntered attributes:\n')
+
+        for attr in attributes:
+            print(f'{attr}{attributes[attr]}')
+
+        print()
+
+        confirm_sign = ''
+
+        while confirm_sign not in ['y', 'Y', 'n', 'N']:
+            confirm_sign = input('Confirm (y/n): ')
+
+        if confirm_sign in ['n', 'N']:
+            return
 
         model = self.nbc.divide_data_params_by_class(self.dataset)
-        row = [2, 100, 70, 31, 120, 27.4, 0.295, 56]
-        label = self.nbc.predict(model, row)
+        label = self.nbc.predict(model, list(attributes.values()))
 
-        print(f'\nPredicted: {label}')
+        print(f'\nThe entered entity was classified as: {label}')
 
 
     def calculate_accuracy(self):
@@ -99,14 +136,15 @@ class PimaIndiansDiabetes:
                 print('\n1. Classify new data.')
                 print('2. Calculate algorithm accuracy.')
                 print('3. Show dataset description.')
-                print('4. Show dataset rows.\n')
+                print('4. Show dataset rows.')
+                print('5. Go back to the main menu.\n')
 
             returned_from_function = False
 
             choice = input('Choice: ')
 
-            if choice not in ['1', '2', '3', '4']:
-                print('Wrong choice! Please choose option 1-4.')
+            if choice not in ['1', '2', '3', '4', '5']:
+                print('Wrong choice! Please choose option 1-5.')
 
             elif choice == '1':
 
@@ -148,14 +186,17 @@ class PimaIndiansDiabetes:
                     returned_from_function = True
                     continue
 
+            elif choice == '5':
+                break
+
             else:
                 raise
 
 
 def main():
 
-    iris = Iris()
-    iris.run()
+    pid = PimaIndiansDiabetes()
+    pid.run()
 
 
 if __name__ == "__main__":
@@ -163,5 +204,5 @@ if __name__ == "__main__":
     try:
         main()
     except:
-         print('\nAn error has occurred during the program execution!\n')
+        print('\nAn error has occurred during the program execution!\n')
 
