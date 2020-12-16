@@ -5,13 +5,12 @@ def test_load_dataset_from_csv():
 
     classifier = NaiveBayesClassifier()
 
-    csv_filename = f'datasets/iris.csv'
-
+    csv_filename = 'iris.csv'
     data_0 = ['5.1', '3.5', '1.4', '0.2', 'Iris-setosa']
     data_2 = ['4.7', '3.2', '1.3', '0.2', 'Iris-setosa']
     data_39 = ['5.1','3.4','1.5','0.2','Iris-setosa']
     data_60 = ['5.0','2.0','3.5','1.0','Iris-versicolor']
-    data_79 = ['5.7','2.6','3.5','1.0','Iris-versicolor']
+    data_81 = ['5.5','2.4','3.7','1.0','Iris-versicolor']
     data_89 = ['5.5','2.5','4.0','1.3','Iris-versicolor']
     data_104 = ['6.5','3.0','5.8','2.2','Iris-virginica']
     data_110 = ['6.5','3.2','5.1','2.0','Iris-virginica']
@@ -24,7 +23,7 @@ def test_load_dataset_from_csv():
     assert readed_dataset[2] == data_2
     assert readed_dataset[39] == data_39
     assert readed_dataset[60] == data_60
-    assert readed_dataset[79] == data_79
+    assert readed_dataset[81] == data_81
     assert readed_dataset[89] == data_89
     assert readed_dataset[104] == data_104
     assert readed_dataset[110] == data_110

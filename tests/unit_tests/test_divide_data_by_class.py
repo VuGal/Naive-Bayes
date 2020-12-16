@@ -12,7 +12,7 @@ def test_divide_data_by_class():
                [9.172168622, 2.511101045, 1],
                [7.792783481, 3.424088941, 1],
                [7.939820817, 0.791637231, 1]]
-    divided = {0: [[3.393533211, 2.331273381, 0],
+    results_dataset = {0: [[3.393533211, 2.331273381, 0],
                    [3.110073483, 1.781539638, 0],
                    [1.343808831, 3.368360954, 0],
                    [3.582294042, 4.67917911, 0],
@@ -23,5 +23,4 @@ def test_divide_data_by_class():
                  [9.172168622, 2.511101045, 1],
                  [7.792783481, 3.424088941, 1],
                  [7.939820817, 0.791637231, 1]]}
-    assert classifier.divide_data_by_class(dataset) == divided
-
+    assert classifier.divide_data_by_class(dataset) == results_dataset
