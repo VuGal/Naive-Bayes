@@ -18,6 +18,26 @@ class PimaIndiansDiabetes:
         self.dataset = self.nbc.load_dataset_from_csv(self.dataset_filename)
 
 
+    def data_preprocessing(self):
+
+        for i in range(len(self.dataset[0]) - 1):
+            self.nbc.string_column_to_float(self.dataset, i)
+
+        # self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
+
+        column = len(self.dataset[0]) - 1
+
+        data = dict()
+        data['0'] = 0
+        data['1'] = 1
+
+        print('0 => 0')
+        print('1 => 1')
+
+        for row in self.dataset:
+            row[column] = data[row[column]]
+
+
     def classify_data(self):
 
         print('\nEnter the data to be classified.\n')
@@ -110,22 +130,7 @@ class PimaIndiansDiabetes:
         print('   Pima Indians Diabetes dataset')
         print('=================================')
 
-        for i in range(len(self.dataset[0]) - 1):
-            self.nbc.string_column_to_float(self.dataset, i)
-
-       # self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
-
-        column = len(self.dataset[0]) - 1
-
-        data = dict()
-        data['0'] = 0
-        data['1'] = 1
-
-        print('0 => 0')
-        print('1 => 1')
-
-        for row in self.dataset:
-            row[column] = data[row[column]]
+        self.data_preprocessing()
 
         returned_from_function = True
 

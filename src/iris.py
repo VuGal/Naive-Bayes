@@ -18,6 +18,16 @@ class Iris:
         self.dataset = self.nbc.load_dataset_from_csv(self.dataset_filename)
 
 
+    def data_preprocessing(self):
+
+        seed(1)
+
+        for i in range(len(self.dataset[0]) - 1):
+            self.nbc.string_column_to_float(self.dataset, i)
+
+        self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
+
+
     def classify_data(self):
 
         print('\nEnter the data to be classified.\n')
@@ -64,14 +74,17 @@ class Iris:
         print(f'\nThe entered entity was classified as: {label}')
 
 
-    def calculate_accuracy(self):
+    def calculate_accuracy(self, n_folds=5):
 
-        n_folds = 5
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
         print('\n\nCalculating the accuracy of the classifier using the iris.csv dataset...')
         print('\nResampling: k-fold cross validation split')
-        print('\nAccuracy (5 folds): %.3f%%\n' % (sum(scores) / float(len(scores))))
+
+        accuracy = (sum(scores) / float(len(scores)))
+        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)}\n')
+
+        return accuracy
 
 
     def show_dataset_description(self):
@@ -100,16 +113,11 @@ class Iris:
 
     def run(self):
 
-        seed(1)
-
         print('\n=================================')
         print('          Iris dataset')
         print('=================================\n')
 
-        for i in range(len(self.dataset[0]) - 1):
-            self.nbc.string_column_to_float(self.dataset, i)
-
-        self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
+        self.data_preprocessing()
 
         returned_from_function = True
 
