@@ -9,6 +9,7 @@ from naive_bayes import NaiveBayesClassifier
 def main():
 
     seed(1)
+    print()
 
     nbc = NaiveBayesClassifier()
 
@@ -20,11 +21,20 @@ def main():
 
     nbc.string_column_to_int(dataset, len(dataset[0]) - 1)
 
+    print('\nTrying to classify the new data: [5.6, 3.1, 4.0, 1.2]')
+
+    model = nbc.divide_data_params_by_class(dataset)
+    row = [5.6, 3.1, 4.0, 1.2]
+    label = nbc.predict(model, row)
+
+    print(f'\nPredicted: {label}')
+
     n_folds = 5
     scores = nbc.evaluate_algorithm(dataset, n_folds)
 
-    print('Scores: %s' % scores)
-    print('Mean Accuracy: %.3f%%' % (sum(scores) / float(len(scores))))
+    print('\n\nCalculating the accuracy of the classifier using the iris.csv dataset...')
+    print('\nResampling: k-fold cross validation split')
+    print('\nAccuracy (5 folds): %.3f%%\n' % (sum(scores) / float(len(scores))))
 
 
 if __name__ == "__main__":
