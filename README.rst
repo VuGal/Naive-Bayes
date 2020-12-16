@@ -23,6 +23,8 @@ Now you can run *main.py* script and execute all actions that it offers.
 Sphinx documentation
 ====================
 
+(tested on Ubuntu 20.04 LTS)
+
 Go to the main project directory (e.g. */home/user/Naive-Bayes*) and run the following command: *python3 setup.py docs*
 
 Now go to the *build/sphinx/html* subdirectory and run index.html with the Internet browser.
