@@ -7,9 +7,22 @@ from random import randrange
 
 class NaiveBayesClassifier:
 
+    '''
+    Implementation of a Naive Bayes Classifier algorithm.
 
-    # Load dataset from .csv file
+    The implementation consists of the following steps:
+    1.
+    2.
+    3.
+    4.
+    5.
+    '''
+    
     def load_dataset_from_csv(self, csv_file):
+
+        '''
+        Load dataset from .csv file
+        '''
 
         dataset = list()
 
@@ -24,8 +37,11 @@ class NaiveBayesClassifier:
             return dataset
 
 
-    # Data preprocessing - change strings to ints (useful for changing class names to numbers)
     def string_column_to_int(self, dataset, column):
+
+        '''
+        Data preprocessing - change strings to ints (useful for changing class names to numbers)
+        '''
 
         class_values = [row[column] for row in dataset]
         unique = set(class_values)
@@ -41,16 +57,33 @@ class NaiveBayesClassifier:
         return data
 
 
-    # Data preprocessing - change strings to floats (useful for changing string class values to floats,
-    # which are easier to process by the program later)
     def string_column_to_float(self, dataset, column):
+
+        '''
+        Data preprocessing - change strings to floats (useful for changing string class values to floats,
+        which are easier to process by the program later)
+
+        Args:
+            dataset:
+            column:
+
+        Returns:
+        '''
 
         for row in dataset:
             row[column] = float(row[column].strip())
 
 
-    # Divide the dataset into values belonging to the specific classes
     def divide_data_by_class(self, dataset):
+
+        '''
+        Divide the dataset into values belonging to the specific classes
+
+        Args:
+            dataset:
+
+        Returns:
+        '''
 
         divided_data = dict()
 
@@ -67,14 +100,20 @@ class NaiveBayesClassifier:
         return divided_data
 
 
-    # Calculate the arithmetic mean
     def arithmetic_mean(self, numbers):
+
+        '''
+        Calculate the arithmetic mean
+        '''
 
         return (sum(numbers) / float(len(numbers)))
 
 
-    # Calculate the standard deviation
     def std_deviation(self, numbers):
+
+        '''
+        Calculate the standard deviation
+        '''
 
         mean = self.arithmetic_mean(numbers)
         variance = sum([(x - mean) ** 2 for x in numbers]) / float(len(numbers) - 1)
@@ -82,9 +121,12 @@ class NaiveBayesClassifier:
         return sqrt(variance)
 
 
-    # Calculate the parameters (arithmetic mean, standard deviation, values count) for each dataset column,
-    # return a list of lists containing the parameters
     def gather_data_params(self, dataset):
+
+        '''
+        Calculate the parameters (arithmetic mean, standard deviation, values count) for each dataset column,
+        return a list of lists containing the parameters
+        '''
 
         data_params = [(self.arithmetic_mean(column), self.std_deviation(column), len(column)) for column in
                        zip(*dataset)]
@@ -93,8 +135,11 @@ class NaiveBayesClassifier:
         return data_params
 
 
-    # Divide the dataset by class, then calculate the parameters for each row
     def divide_data_params_by_class(self, dataset):
+
+        '''
+        Divide the dataset by class, then calculate the parameters for each row
+        '''
 
         divided_data = self.divide_data_by_class(dataset)
         params_by_class = dict()
@@ -105,16 +150,22 @@ class NaiveBayesClassifier:
         return params_by_class
 
 
-    # Calculate the Gaussian probability distribution function
     def gaussian_probability(self, x, mean, std_dev):
+
+        '''
+        Calculate the Gaussian probability distribution function
+        '''
 
         exponent = exp(-((x - mean) ** 2 / (2 * std_dev ** 2)))
 
         return (1 / (sqrt(2 * pi) * std_dev)) * exponent
 
 
-    # Calculate the probabilities of classifying a specified data row to each class
     def calculate_class_probabilities(self, divided_data, row):
+
+        '''
+        Calculate the probabilities of classifying a specified data row to each class
+        '''
 
         total_rows = sum([divided_data[label][0][2] for label in divided_data])
 
@@ -131,8 +182,11 @@ class NaiveBayesClassifier:
         return probabilities
 
 
-    # Predict a class for a given data row
     def predict(self, divided_data, row):
+
+        '''
+        Predict a class for a given data row
+        '''
 
         probabilities = self.calculate_class_probabilities(divided_data, row)
         predicted_label, predicted_probability = None, -1
@@ -146,8 +200,11 @@ class NaiveBayesClassifier:
         return predicted_label
 
 
-    # Data resampling - k-fold cross validation split
     def k_fold_cross_validation_split(self, dataset, folds_num):
+
+        '''
+        Data resampling - k-fold cross validation split
+        '''
 
         dataset_split = list()
         dataset_copy = list(dataset)
@@ -166,8 +223,11 @@ class NaiveBayesClassifier:
         return dataset_split
 
 
-    # Measure algorithm accuracy in percent
     def measure_algorithm_accuracy(self, actual, predicted):
+
+        '''
+        Measure algorithm accuracy in percent
+        '''
 
         correct = 0
 
@@ -178,8 +238,11 @@ class NaiveBayesClassifier:
         return correct / float(len(actual)) * 100.0
 
 
-    # Evaluate the algorithm using a cross validation split
     def evaluate_algorithm(self, dataset, n_folds):
+
+        '''
+        Evaluate the algorithm using a cross validation split
+        '''
 
         folds = self.k_fold_cross_validation_split(dataset, n_folds)
         scores = list()

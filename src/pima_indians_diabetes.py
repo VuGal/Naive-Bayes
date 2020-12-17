@@ -9,6 +9,15 @@ from naive_bayes import NaiveBayesClassifier
 
 class PimaIndiansDiabetes:
 
+    '''
+
+    Works on pima-indians-diabetes.csv dataset and interactively performs the following actions:\n
+    1. Classify new data entered by user.\n
+    2. Calculate the algorithm implementation accuracy.\n
+    3. Show dataset description (pima-indians-diabetes.names file).\n
+    4. Show dataset rows.
+
+    '''
 
     def __init__(self):
 
@@ -19,6 +28,18 @@ class PimaIndiansDiabetes:
 
 
     def data_preprocessing(self):
+
+        '''
+
+        Converts class names (strings) to ints and class values to floats.
+
+        Args:
+            None.
+
+        Returns:
+            Nothing.
+
+        '''
 
         for i in range(len(self.dataset[0]) - 1):
             self.nbc.string_column_to_float(self.dataset, i)
@@ -39,6 +60,19 @@ class PimaIndiansDiabetes:
 
 
     def classify_data(self):
+
+        '''
+
+        Creates a new row with values inputted by the user, then classifies it to the proper class
+        using Naive Bayes Classifier algorithm.
+
+        Args:
+            None.
+
+        Returns:
+            Nothing.
+
+        '''
 
         print('\nEnter the data to be classified.\n')
 
@@ -90,6 +124,20 @@ class PimaIndiansDiabetes:
 
     def calculate_accuracy(self):
 
+        '''
+
+        Calculate algorithm accuracy by using evaluate_algorithm() function.
+
+        Args:
+            n_folds (int)
+                Number of folds used in the k-fold cross validation split algorithm.
+
+        Returns:
+            accuracy
+                Calculated classifier accuracy in percent.
+
+        '''
+
         n_folds = 5
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
@@ -99,6 +147,18 @@ class PimaIndiansDiabetes:
 
 
     def show_dataset_description(self):
+
+        '''
+
+        Prints the 'pima-indians-diabetes.names' file to the console output.
+
+        Args:
+            None.
+
+        Returns:
+            Nothing.
+
+        '''
 
         with open(self.description_filename, 'r') as f:
 
@@ -112,6 +172,18 @@ class PimaIndiansDiabetes:
 
     def show_dataset_rows(self):
 
+        '''
+
+        Prints the 'pima-indians-diabetes.csv' file to the console output.
+
+        Args:
+            None.
+
+        Returns:
+            Nothing.
+
+        '''
+
         with open(self.dataset_filename, 'r') as f:
 
             csv_reader = csv.reader(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -123,6 +195,19 @@ class PimaIndiansDiabetes:
 
 
     def run(self):
+
+        '''
+
+        Creates the interactive menu from which the user can execute the actions handled
+        by the other methods in this class.
+
+        Args:
+            None.
+
+        Returns:
+            Nothing.
+
+        '''
 
         seed(1)
 

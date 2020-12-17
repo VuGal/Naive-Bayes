@@ -1,8 +1,5 @@
 #!/usr/bin/env python3
 
-# This test compares the created Naive Bayes classifier implementation
-# with scikit-learn library using iris.csv dataset
-
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
@@ -12,6 +9,11 @@ from iris import Iris
 
 
 def test_iris_scikit_learn_comparison():
+
+    '''
+    This test compares the created Naive Bayes classifier implementation
+    with scikit-learn library using iris.csv dataset.
+    '''
 
     print('===============================')
     print('=== PROJECT IMPLEMENTATION ====')
