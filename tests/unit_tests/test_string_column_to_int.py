@@ -1,9 +1,11 @@
 from naive_bayes import NaiveBayesClassifier
 import random
 
+
 def test_string_column_to_int():
 
     classifier = NaiveBayesClassifier()
+
     dataset = [['3.393533211', '2.331273381', '0'],
                ['3.110073483', '1.781539638', '0'],
                ['1.343808831', '3.368360954', '0'],
@@ -14,8 +16,10 @@ def test_string_column_to_int():
                ['9.172168622', '2.511101045', '1'],
                ['7.792783481', '3.424088941', '1'],
                ['7.939820817', '0.791637231', '1']]
+
     classifier.string_column_to_int(dataset, len(dataset[0])-1)
 
     for i in range(0, len(dataset)):
         tested_row = random.randint(0, len(dataset)-1)
         assert isinstance(dataset[tested_row][len(dataset[0]) - 1], int)
+

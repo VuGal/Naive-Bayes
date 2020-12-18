@@ -1,8 +1,11 @@
 from naive_bayes import NaiveBayesClassifier
 import random
 
+
 def test_string_column_to_float():
+
     classifier = NaiveBayesClassifier()
+
     dataset = [['3.393533211', '2.331273381', '0'],
                ['3.110073483', '1.781539638', '0'],
                ['1.343808831', '3.368360954', '0'],
@@ -16,7 +19,6 @@ def test_string_column_to_float():
 
     for i in range(0, len(dataset[0])-1):
         classifier.string_column_to_float(dataset, i)
-
 
     for i in range(0, len(dataset)):
         tested_row = random.randint(0, len(dataset)-1)

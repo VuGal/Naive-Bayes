@@ -21,3 +21,4 @@ def test_gather_data_params():
     test_results = classifier.gather_data_params(dataset)
 
     assert test_results == results_dataset
+

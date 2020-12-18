@@ -21,7 +21,6 @@ def test_iris_scikit_learn_comparison():
 
     seed(1)
 
-    filename = 'datasets/iris.csv'
     iris = Iris()
     iris.data_preprocessing()
     project_efficiency_percent = iris.calculate_accuracy(n_folds=2)

@@ -2,7 +2,9 @@ from naive_bayes import NaiveBayesClassifier
 
 
 def test_divide_data_params_by_class():
+
     classifier = NaiveBayesClassifier()
+    
     dataset = [[3.393533211, 2.331273381, 0],
                [3.110073483, 1.781539638, 0],
                [1.343808831, 3.368360954, 0],
@@ -20,3 +22,4 @@ def test_divide_data_params_by_class():
                            (2.9914679790000003, 1.4541931384601618, 5)]}
 
     assert classifier.divide_data_params_by_class(dataset) == results_dataset
+

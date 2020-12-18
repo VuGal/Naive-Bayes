@@ -13,3 +13,4 @@ def test_predict():
     results_predict = classifier.predict(dataset, row)
 
     assert results_predict == 1
+
