@@ -48,22 +48,24 @@ class NaiveBayesClassifier:
             return dataset
 
 
-    def string_column_to_int(self, dataset, column):
+    def map_class_names_to_ints(self, dataset, column, numbers_already=False):
 
         '''
 
-        Data preprocessing - changes value in the specified column to an integer\n
-        (useful for changing class names to numbers).
+        Data preprocessing - maps class names (strings) to integers.
 
         Args:
             dataset (list)
                 List representing the dataset.
             column (int)
                 Number of column to be converted.
+            numbers_already (bool)
+                If the class names strings are numbers already, maps them to integers representing the same numbers.
+                Default: False
 
         Returns:
-            data (list)
-                Dataset list with a value located in the specified column converted to int.
+            data (dict[string, int])
+                Dictionary mapping class names (strings) to integers.
 
         '''
 
@@ -71,9 +73,13 @@ class NaiveBayesClassifier:
         unique = set(class_values)
         data = dict()
 
-        for i, value in enumerate(unique):
-            data[value] = i
-            print(f'{value} => {i}')
+        if not numbers_already:
+            for i, value in enumerate(unique):
+                data[value] = i
+
+        else:
+            for value in unique:
+                data[value] = int(value)
 
         for row in dataset:
             row[column] = data[row[column]]
@@ -81,12 +87,12 @@ class NaiveBayesClassifier:
         return data
 
 
-    def string_column_to_float(self, dataset, column):
+    def convert_class_values_to_floats(self, dataset, column):
 
         '''
 
-        Data preprocessing - changes strings to floats (useful for changing string class values to floats,
-        which are easier to process by the program later)
+        Data preprocessing - converts class values (strings) to floats to enable more efficient processing
+        of the data by the program.
 
         Args:
             dataset (list)
@@ -95,8 +101,7 @@ class NaiveBayesClassifier:
                 Number of column to be converted.
 
         Returns:
-            data (list)
-                Dataset list with a value located in the specified column converted to float.
+            Nothing.
 
         '''
 
@@ -108,7 +113,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Divide the dataset into rows belonging to the specific classes.
+        Divides the dataset into rows belonging to the specific classes.
 
         Args:
             dataset (list)
@@ -138,7 +143,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Calculate the arithmetic mean.
+        Calculates the arithmetic mean.
 
         Args:
             numbers (list[float])
@@ -158,7 +163,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Calculate the standard deviation.
+        Calculates the standard deviation.
 
         Args:
             numbers (list[float])
@@ -181,7 +186,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Calculate the parameters (arithmetic mean, standard deviation, values count) for each dataset column.
+        Calculates the parameters (arithmetic mean, standard deviation, values count) for each dataset column.
 
         Args:
             dataset (list)
@@ -204,7 +209,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Divide the dataset by class, then calculate the parameters for each row.
+        Divides the dataset by class, then calculate the parameters for each row.
 
         Args:
             dataset (list)
@@ -229,7 +234,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Calculate the Gaussian probability distribution function.
+        Calculates the Gaussian probability distribution function.
 
         Args:
             x (list)
@@ -254,7 +259,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Calculate the probabilities of classifying a specified data row to each class.
+        Calculates the probabilities of classifying a specified data row to each class.
 
         Args:
             divided_data (list)
@@ -287,7 +292,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Predict a class for a given data row.
+        Predicts a class for a given data row.
 
         Args:
             divided_data (list)
@@ -352,7 +357,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Measure algorithm accuracy in percent.
+        Measures algorithm accuracy in percent.
 
         Args:
             actual (int)
@@ -379,7 +384,7 @@ class NaiveBayesClassifier:
 
         '''
 
-        Evaluate the algorithm using a k-fold cross validation split.
+        Evaluates the algorithm using a k-fold cross validation split.
 
         Args:
             dataset (list)

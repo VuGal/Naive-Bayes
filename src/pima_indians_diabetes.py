@@ -42,21 +42,9 @@ class PimaIndiansDiabetes:
         '''
 
         for i in range(len(self.dataset[0]) - 1):
-            self.nbc.string_column_to_float(self.dataset, i)
+            self.nbc.convert_class_values_to_floats(self.dataset, i)
 
-        # self.nbc.string_column_to_int(self.dataset, len(self.dataset[0]) - 1)
-
-        column = len(self.dataset[0]) - 1
-
-        data = dict()
-        data['0'] = 0
-        data['1'] = 1
-
-        print('0 => 0')
-        print('1 => 1')
-
-        for row in self.dataset:
-            row[column] = data[row[column]]
+        self.nbc.map_class_names_to_ints(self.dataset, len(self.dataset[0]) - 1, numbers_already=True)
 
 
     def classify_data(self):
@@ -126,7 +114,7 @@ class PimaIndiansDiabetes:
 
         '''
 
-        Calculate algorithm accuracy by using evaluate_algorithm() function.
+        Calculates algorithm accuracy by using evaluate_algorithm() function.
 
         Args:
             n_folds (int)

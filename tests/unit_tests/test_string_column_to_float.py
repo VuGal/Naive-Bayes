@@ -18,7 +18,7 @@ def test_string_column_to_float():
                ['7.939820817', '0.791637231', '1']]
 
     for i in range(0, len(dataset[0])-1):
-        classifier.string_column_to_float(dataset, i)
+        classifier.convert_class_values_to_floats(dataset, i)
 
     for i in range(0, len(dataset)):
         tested_row = random.randint(0, len(dataset)-1)
