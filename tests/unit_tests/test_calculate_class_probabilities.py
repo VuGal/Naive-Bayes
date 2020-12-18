@@ -24,4 +24,3 @@ def test_calculate_class_probabilities():
     results_dataset =  {0: 0.05032427673372076, 1: 0.00011557718379945765}
 
     assert classifier.calculate_class_probabilities(divided_dataset, dataset[0]) == results_dataset
-

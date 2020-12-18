@@ -2,7 +2,7 @@ from naive_bayes import NaiveBayesClassifier
 import random
 
 
-def test_string_column_to_float():
+def test_convert_class_values_to_floats():
 
     classifier = NaiveBayesClassifier()
 
@@ -24,4 +24,3 @@ def test_string_column_to_float():
         tested_row = random.randint(0, len(dataset)-1)
         tested_column = random.randint(0, len(dataset[0]) - 2)
         assert isinstance(dataset[tested_row][tested_column], float)
-

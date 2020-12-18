@@ -1,7 +1,7 @@
 from naive_bayes import NaiveBayesClassifier
 
 
-def test_divide_data_params_by_class():
+def test_calculate_class_parameters():
 
     classifier = NaiveBayesClassifier()
     
@@ -22,4 +22,3 @@ def test_divide_data_params_by_class():
                            (2.9914679790000003, 1.4541931384601618, 5)]}
 
     assert classifier.calculate_class_parameters(dataset) == results_dataset
-

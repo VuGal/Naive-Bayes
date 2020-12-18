@@ -21,4 +21,3 @@ def test_evaluate_algorithm():
 
     assert len(results_data) == n_folds
     assert [data for data in results_data if 0 <= data <= 100]
-

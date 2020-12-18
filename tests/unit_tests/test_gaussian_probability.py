@@ -10,4 +10,3 @@ def test_gaussian_probability():
 
     for i in range(0, len(numbers)):
         assert classifier.gaussian_probability(numbers[i][0], numbers[i][1], numbers[i][2]) == results[i]
-

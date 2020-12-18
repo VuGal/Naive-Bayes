@@ -29,4 +29,3 @@ def test_divide_data_by_class():
                  [7.939820817, 0.791637231, 1]]}
     
     assert classifier.divide_data_by_class(dataset) == results_dataset
-

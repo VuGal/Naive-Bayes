@@ -21,4 +21,3 @@ def test_k_fold_cross_validation_split():
     results_dataset = classifier.k_fold_cross_validation_split(dataset, folds_num)
 
     assert len(results_dataset) == folds_num
-

@@ -30,4 +30,3 @@ def test_load_dataset_from_csv():
     assert readed_dataset[110] == data_110
     assert readed_dataset[125] == data_125
     assert readed_dataset[143] == data_143
-

@@ -9,4 +9,3 @@ def test_std_deviation():
 
     assert np.around(classifier.std_deviation(numbers), 13) == 1.8728498783049
     assert classifier.std_deviation(numbers) == np.std(numbers, ddof=1)
-
