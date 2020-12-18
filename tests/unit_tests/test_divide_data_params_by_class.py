@@ -21,5 +21,5 @@ def test_divide_data_params_by_class():
                        1: [(7.6146523718, 1.2344321550313704, 5),
                            (2.9914679790000003, 1.4541931384601618, 5)]}
 
-    assert classifier.divide_data_params_by_class(dataset) == results_dataset
+    assert classifier.calculate_class_parameters(dataset) == results_dataset
 

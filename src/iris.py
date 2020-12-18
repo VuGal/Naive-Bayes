@@ -100,7 +100,7 @@ class Iris:
         if confirm_sign in ['n', 'N']:
             return
 
-        model = self.nbc.divide_data_params_by_class(self.dataset)
+        model = self.nbc.calculate_class_parameters(self.dataset)
         label = self.nbc.predict(model, list(attributes.values()))
 
         print(f'\nThe entered entity was classified as: {label}')

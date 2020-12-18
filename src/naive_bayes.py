@@ -205,29 +205,29 @@ class NaiveBayesClassifier:
         return data_params
 
 
-    def divide_data_params_by_class(self, dataset):
+    def calculate_class_parameters(self, dataset):
 
         '''
 
-        Divides the dataset by class, then calculate the parameters for each row.
+        Divides the dataset by class, then calculate the parameters for each class.
 
         Args:
             dataset (list)
                 List representing the dataset.
 
         Returns:
-            params_by_class (dict[int, [float, float, int]])
+            class_params (dict[int, [float, float, int]])
                 Dictionary mapping class names to parameters lists.
 
         '''
 
         divided_data = self.divide_data_by_class(dataset)
-        params_by_class = dict()
+        class_params = dict()
 
         for class_name, rows in divided_data.items():
-            params_by_class[class_name] = self.gather_data_params(rows)
+            class_params[class_name] = self.gather_data_params(rows)
 
-        return params_by_class
+        return class_params
 
 
     def gaussian_probability(self, x, mean, std_dev):
@@ -414,7 +414,7 @@ class NaiveBayesClassifier:
                 row_copy[-1] = None
                 test_set.append(row_copy)
 
-            params_by_class = self.divide_data_params_by_class(train_set)
+            params_by_class = self.calculate_class_parameters(train_set)
             predicted = list()
 
             for row in test_set:
