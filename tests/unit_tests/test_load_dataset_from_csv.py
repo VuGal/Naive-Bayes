@@ -30,3 +30,9 @@ def test_load_dataset_from_csv():
     assert readed_dataset[110] == data_110
     assert readed_dataset[125] == data_125
     assert readed_dataset[143] == data_143
+
+    csv_filename_2 = 'tests/unit_tests/resources/load_test.csv'
+
+    readed_dataset_2 = classifier.load_dataset_from_csv(csv_filename_2)
+
+    assert len(readed_dataset_2) == 3

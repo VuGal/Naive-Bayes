@@ -9,3 +9,4 @@ def test_measure_algorithm_accuracy():
     predicted = [1, 2, 4, 5, 6]
 
     assert classifier.measure_algorithm_accuracy(classifier, actual, predicted) == 100
+    assert isinstance(classifier.measure_algorithm_accuracy(classifier, actual, predicted), float)
