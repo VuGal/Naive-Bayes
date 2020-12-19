@@ -7,7 +7,7 @@ from random import randrange
 
 class NaiveBayesClassifier:
 
-    '''
+    """
 
     Implementation of a Naive Bayes Classifier algorithm.
 
@@ -18,11 +18,11 @@ class NaiveBayesClassifier:
     4. Calculate the Gaussian Probability Density Function\n
     5. Calculate the probabilities of data belonging to each data class
 
-    '''
+    """
     
     def load_dataset_from_csv(self, csv_file):
 
-        '''
+        """
 
         Loads dataset from .csv file.
 
@@ -33,7 +33,7 @@ class NaiveBayesClassifier:
         Returns:
             dataset (list[string])
 
-        '''
+        """
 
         dataset = list()
 
@@ -50,7 +50,7 @@ class NaiveBayesClassifier:
 
     def map_class_names_to_ints(self, dataset, column, numbers_already=False):
 
-        '''
+        """
 
         Data preprocessing - maps class names (strings) to integers.
 
@@ -67,7 +67,7 @@ class NaiveBayesClassifier:
             data (dict[string, int])
                 Dictionary mapping class names (strings) to integers.
 
-        '''
+        """
 
         class_values = [row[column] for row in dataset]
         unique = set(class_values)
@@ -89,7 +89,7 @@ class NaiveBayesClassifier:
 
     def convert_class_values_to_floats(self, dataset, column):
 
-        '''
+        """
 
         Data preprocessing - converts class values (strings) to floats to enable more efficient processing
         of the data by the program.
@@ -103,7 +103,7 @@ class NaiveBayesClassifier:
         Returns:
             Nothing.
 
-        '''
+        """
 
         for row in dataset:
             row[column] = float(row[column].strip())
@@ -111,7 +111,7 @@ class NaiveBayesClassifier:
 
     def divide_data_by_class(self, dataset):
 
-        '''
+        """
 
         Divides the dataset into rows belonging to the specific classes.
 
@@ -122,7 +122,7 @@ class NaiveBayesClassifier:
         Returns:
             divided_data (dict[int, list])
 
-        '''
+        """
 
         divided_data = dict()
 
@@ -141,7 +141,7 @@ class NaiveBayesClassifier:
 
     def arithmetic_mean(self, numbers):
 
-        '''
+        """
 
         Calculates the arithmetic mean.
 
@@ -154,14 +154,14 @@ class NaiveBayesClassifier:
                 Calculated arithmetic mean of inputted numbers.
 
 
-        '''
+        """
 
         return (sum(numbers) / float(len(numbers)))
 
 
     def std_deviation(self, numbers):
 
-        '''
+        """
 
         Calculates the standard deviation.
 
@@ -174,7 +174,7 @@ class NaiveBayesClassifier:
                 Calculated standard deviation of inputted numbers.
 
 
-        '''
+        """
 
         mean = self.arithmetic_mean(numbers)
         variance = sum([(x - mean) ** 2 for x in numbers]) / float(len(numbers) - 1)
@@ -184,7 +184,7 @@ class NaiveBayesClassifier:
 
     def gather_data_params(self, dataset):
 
-        '''
+        """
 
         Calculates the parameters (arithmetic mean, standard deviation, values count) for each dataset column.
 
@@ -196,7 +196,7 @@ class NaiveBayesClassifier:
             data_params (list[float, float, int])
                 List of lists containing the parameters.
 
-        '''
+        """
 
         data_params = [(self.arithmetic_mean(column), self.std_deviation(column), len(column)) for column in
                        zip(*dataset)]
@@ -207,7 +207,7 @@ class NaiveBayesClassifier:
 
     def calculate_class_parameters(self, dataset):
 
-        '''
+        """
 
         Divides the dataset by class, then calculate the parameters for each class.
 
@@ -219,7 +219,7 @@ class NaiveBayesClassifier:
             class_params (dict[int, [float, float, int]])
                 Dictionary mapping class names to parameters lists.
 
-        '''
+        """
 
         divided_data = self.divide_data_by_class(dataset)
         class_params = dict()
@@ -232,7 +232,7 @@ class NaiveBayesClassifier:
 
     def gaussian_probability(self, x, mean, std_dev):
 
-        '''
+        """
 
         Calculates the Gaussian probability distribution function.
 
@@ -248,7 +248,7 @@ class NaiveBayesClassifier:
             params_by_class (dict[int, [float, float, int]])
                 List of lists containing the parameters.
 
-        '''
+        """
 
         exponent = exp(-((x - mean) ** 2 / (2 * std_dev ** 2)))
 
@@ -257,7 +257,7 @@ class NaiveBayesClassifier:
 
     def calculate_class_probabilities(self, divided_data, row):
 
-        '''
+        """
 
         Calculates the probabilities of classifying a specified data row to each class.
 
@@ -271,7 +271,7 @@ class NaiveBayesClassifier:
             probabilities (dict[int, float])
                 List of lists containing the parameters.
 
-        '''
+        """
 
         total_rows = sum([divided_data[label][0][2] for label in divided_data])
 
@@ -290,7 +290,7 @@ class NaiveBayesClassifier:
 
     def predict(self, divided_data, row):
 
-        '''
+        """
 
         Predicts a class for a given data row.
 
@@ -304,7 +304,7 @@ class NaiveBayesClassifier:
             predicted_label (float)
                 Float representing the predicted class name.
 
-        '''
+        """
 
         probabilities = self.calculate_class_probabilities(divided_data, row)
         predicted_label, predicted_probability = None, -1
@@ -320,7 +320,7 @@ class NaiveBayesClassifier:
 
     def k_fold_cross_validation_split(self, dataset, folds_num):
 
-        '''
+        """
 
         Data resampling - k-fold cross validation split.
 
@@ -334,7 +334,7 @@ class NaiveBayesClassifier:
             dataset_split (float)
                 List representing the dataset after the k-split.
 
-        '''
+        """
 
         dataset_split = list()
         dataset_copy = list(dataset)
@@ -355,7 +355,7 @@ class NaiveBayesClassifier:
 
     def measure_algorithm_accuracy(self, actual, predicted):
 
-        '''
+        """
 
         Measures algorithm accuracy in percent.
 
@@ -369,7 +369,7 @@ class NaiveBayesClassifier:
             (float)
                 The algorithm accuracy in percent.
 
-        '''
+        """
 
         correct = 0
 
@@ -382,7 +382,7 @@ class NaiveBayesClassifier:
 
     def evaluate_algorithm(self, dataset, n_folds):
 
-        '''
+        """
 
         Evaluates the algorithm using a k-fold cross validation split.
 
@@ -396,7 +396,7 @@ class NaiveBayesClassifier:
             scores (list[float])
                 List containing the classification accuracies in each fold.
 
-        '''
+        """
 
         folds = self.k_fold_cross_validation_split(dataset, n_folds)
         scores = list()

@@ -9,7 +9,7 @@ from naive_bayes import NaiveBayesClassifier
 
 class PimaIndiansDiabetes:
 
-    '''
+    """
 
     Works on pima-indians-diabetes.csv dataset and interactively performs the following actions:\n
     1. Classify new data entered by user.\n
@@ -17,7 +17,7 @@ class PimaIndiansDiabetes:
     3. Show dataset description (pima-indians-diabetes.names file).\n
     4. Show dataset rows.
 
-    '''
+    """
 
     def __init__(self):
 
@@ -29,7 +29,7 @@ class PimaIndiansDiabetes:
 
     def data_preprocessing(self):
 
-        '''
+        """
 
         Converts class names (strings) to ints and class values to floats.
 
@@ -39,7 +39,7 @@ class PimaIndiansDiabetes:
         Returns:
             Nothing.
 
-        '''
+        """
 
         for i in range(len(self.dataset[0]) - 1):
             self.nbc.convert_class_values_to_floats(self.dataset, i)
@@ -49,7 +49,7 @@ class PimaIndiansDiabetes:
 
     def classify_data(self):
 
-        '''
+        """
 
         Creates a new row with values inputted by the user, then classifies it to the proper class
         using Naive Bayes Classifier algorithm.
@@ -60,7 +60,7 @@ class PimaIndiansDiabetes:
         Returns:
             Nothing.
 
-        '''
+        """
 
         print('\nEnter the data to be classified.\n')
 
@@ -107,12 +107,19 @@ class PimaIndiansDiabetes:
         model = self.nbc.calculate_class_parameters(self.dataset)
         label = self.nbc.predict(model, list(attributes.values()))
 
-        print(f'\nThe entered entity was classified as: {label}')
+        # Original dataset contains class names represented as numbers,
+        # so it's needed to print the labels explicitly
+        if label == 0:
+            print(f'\nThe entered entity was classified as: Negative')
+        elif label == 1:
+            print(f'\nThe entered entity was classified as: Positive')
+        else:
+            raise
 
 
     def calculate_accuracy(self, n_folds=5):
 
-        '''
+        """
 
         Calculates algorithm accuracy by using evaluate_algorithm() function.
 
@@ -124,7 +131,7 @@ class PimaIndiansDiabetes:
             accuracy
                 Calculated classifier accuracy in percent.
 
-        '''
+        """
 
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
@@ -139,7 +146,7 @@ class PimaIndiansDiabetes:
 
     def show_dataset_description(self):
 
-        '''
+        """
 
         Prints the 'pima-indians-diabetes.names' file to the console output.
 
@@ -149,7 +156,7 @@ class PimaIndiansDiabetes:
         Returns:
             Nothing.
 
-        '''
+        """
 
         with open(self.description_filename, 'r') as f:
 
@@ -163,7 +170,7 @@ class PimaIndiansDiabetes:
 
     def show_dataset_rows(self):
 
-        '''
+        """
 
         Prints the 'pima-indians-diabetes.csv' file to the console output.
 
@@ -173,7 +180,7 @@ class PimaIndiansDiabetes:
         Returns:
             Nothing.
 
-        '''
+        """
 
         with open(self.dataset_filename, 'r') as f:
 
@@ -187,7 +194,7 @@ class PimaIndiansDiabetes:
 
     def run(self):
 
-        '''
+        """
 
         Creates the interactive menu from which the user can execute the actions handled
         by the other methods in this class.
@@ -198,7 +205,7 @@ class PimaIndiansDiabetes:
         Returns:
             Nothing.
 
-        '''
+        """
 
         seed(1)
 

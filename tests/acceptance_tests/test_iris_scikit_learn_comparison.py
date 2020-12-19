@@ -10,10 +10,12 @@ from iris import Iris
 
 def test_iris_scikit_learn_comparison():
 
-    '''
+    """
+
     This test compares the created Naive Bayes classifier implementation
     with scikit-learn library using iris.csv dataset.
-    '''
+
+    """
 
     print('===============================')
     print('=== PROJECT IMPLEMENTATION ====')

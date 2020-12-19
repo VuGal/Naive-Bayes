@@ -7,7 +7,7 @@ from naive_bayes import NaiveBayesClassifier
 
 class Iris:
 
-    '''
+    """
 
     Works on iris.csv dataset and interactively performs the following actions:\n
     1. Classify new data entered by user.\n
@@ -15,7 +15,7 @@ class Iris:
     3. Show dataset description (iris.names file).\n
     4. Show dataset rows.
 
-    '''
+    """
 
     def __init__(self):
 
@@ -23,11 +23,12 @@ class Iris:
         self.description_filename = 'datasets/iris.names'
         self.nbc = NaiveBayesClassifier()
         self.dataset = self.nbc.load_dataset_from_csv(self.dataset_filename)
+        self.class_map = dict()
 
 
     def data_preprocessing(self):
 
-        '''
+        """
 
         Converts class names (strings) to ints and class values to floats.
 
@@ -37,19 +38,19 @@ class Iris:
         Returns:
             Nothing.
 
-        '''
+        """
 
         seed(1)
 
         for i in range(len(self.dataset[0]) - 1):
             self.nbc.convert_class_values_to_floats(self.dataset, i)
 
-        self.nbc.map_class_names_to_ints(self.dataset, len(self.dataset[0]) - 1)
+        self.class_map = self.nbc.map_class_names_to_ints(self.dataset, len(self.dataset[0]) - 1)
 
 
     def classify_data(self):
 
-        '''
+        """
 
         Creates a new row with values inputted by the user, then classifies it to the proper class
         using Naive Bayes Classifier algorithm.
@@ -60,7 +61,7 @@ class Iris:
         Returns:
             Nothing.
 
-        '''
+        """
 
         print('\nEnter the data to be classified.\n')
 
@@ -103,12 +104,15 @@ class Iris:
         model = self.nbc.calculate_class_parameters(self.dataset)
         label = self.nbc.predict(model, list(attributes.values()))
 
-        print(f'\nThe entered entity was classified as: {label}')
+        for key, value in self.class_map.items():
+            if value == label:
+                print(f'\nThe entered entity was classified as: {key}')
+                break
 
 
     def calculate_accuracy(self, n_folds=5):
 
-        '''
+        """
 
         Calculates algorithm accuracy by using evaluate_algorithm() function.
 
@@ -120,7 +124,7 @@ class Iris:
             accuracy
                 Calculated classifier accuracy in percent.
 
-        '''
+        """
 
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
@@ -135,7 +139,7 @@ class Iris:
 
     def show_dataset_description(self):
 
-        '''
+        """
 
         Prints the 'iris.names' file to the console output.
 
@@ -145,7 +149,7 @@ class Iris:
         Returns:
             Nothing.
 
-        '''
+        """
 
         with open(self.description_filename, 'r') as f:
 
@@ -159,7 +163,7 @@ class Iris:
 
     def show_dataset_rows(self):
 
-        '''
+        """
 
         Prints the 'iris.csv' file to the console output.
 
@@ -169,7 +173,7 @@ class Iris:
         Returns:
             Nothing.
 
-        '''
+        """
 
         with open(self.dataset_filename, 'r') as f:
 
@@ -183,7 +187,7 @@ class Iris:
 
     def run(self):
 
-        '''
+        """
 
         Creates the interactive menu from which the user can execute the actions handled
         by the other methods in this class.
@@ -194,7 +198,7 @@ class Iris:
         Returns:
             Nothing.
 
-        '''
+        """
 
         print('\n=================================')
         print('          Iris dataset')
