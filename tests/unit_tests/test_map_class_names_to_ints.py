@@ -17,8 +17,15 @@ def test_map_class_names_to_ints():
                ['7.792783481', '3.424088941', '1'],
                ['7.939820817', '0.791637231', '1']]
 
-    classifier.map_class_names_to_ints(dataset, len(dataset[0])-1)
+    classifier.map_class_names_to_ints(dataset, len(dataset[0])-1, True)
 
     for i in range(0, len(dataset)):
         tested_row = random.randint(0, len(dataset)-1)
         assert isinstance(dataset[tested_row][len(dataset[0]) - 1], int)
+
+    classifier.map_class_names_to_ints(dataset, len(dataset[0])-1, False)
+
+    for i in range(0, len(dataset)):
+        tested_row = random.randint(0, len(dataset)-1)
+        assert isinstance(dataset[tested_row][len(dataset[0]) - 1], int)
+
