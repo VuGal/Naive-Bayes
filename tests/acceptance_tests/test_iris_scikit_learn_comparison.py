@@ -58,4 +58,4 @@ if __name__ == "__main__":
     try:
         main()
     except:
-         print('\nAn error has occurred during the program execution!\n')
+        print('\nAn error has occurred during the program execution!\n')
