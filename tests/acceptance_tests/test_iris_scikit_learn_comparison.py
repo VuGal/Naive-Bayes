@@ -41,7 +41,7 @@ def test_iris_scikit_learn_comparison():
     mislabeled_points = (y_test != y_pred).sum()
     sklearn_efficiency_percent = ((num_of_points - mislabeled_points) / num_of_points) * 100
 
-    print(f'\n\nCalculating the scikit-learn algorithm accuracy...')
+    print(f'\n\nCalculating the scikit-learn algorithm accuracy with iris.csv dataset...')
     print(f'\nNumber of mislabeled points out of a total {num_of_points} points : {mislabeled_points}')
     print(f'\nAlgorithm efficiency: {round(sklearn_efficiency_percent, 5)} %')
 

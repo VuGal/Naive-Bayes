@@ -88,7 +88,17 @@ def main():
         elif choice == '5':
 
             try:
+                print('\n**************************************')
+                print('           iris.csv dataset')
+                print('**************************************')
                 output = subprocess.run(f'python3 tests/acceptance_tests/test_iris_scikit_learn_comparison.py',
+                                        shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
+                print(f'{output}')
+                print('\n\n\n**************************************')
+                print('  pima-indians-diabetes.csv dataset')
+                print('**************************************')
+                output = subprocess.run(f'python3 \
+                                        tests/acceptance_tests/test_pima_indians_diabetes_scikit_learn_comparison.py',
                                         shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
                 print(f'{output}')
                 returned_from_function = True

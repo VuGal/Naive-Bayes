@@ -135,11 +135,11 @@ class PimaIndiansDiabetes:
 
         scores = self.nbc.evaluate_algorithm(self.dataset, n_folds)
 
-        print('\n\nCalculating the accuracy of the classifier using the iris.csv dataset...')
+        print('\n\nCalculating the accuracy of the classifier using the pima-indians-diabetes.csv dataset...')
         print('\nResampling: k-fold cross validation split')
 
         accuracy = (sum(scores) / float(len(scores)))
-        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)}\n')
+        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)} %\n')
 
         return accuracy
 

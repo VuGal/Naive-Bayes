@@ -132,7 +132,7 @@ class Iris:
         print('\nResampling: k-fold cross validation split')
 
         accuracy = (sum(scores) / float(len(scores)))
-        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)}\n')
+        print(f'\nAccuracy ({n_folds} folds): {round(accuracy, 3)} %\n')
 
         return accuracy
 
