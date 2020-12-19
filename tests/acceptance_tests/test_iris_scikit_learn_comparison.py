@@ -17,7 +17,7 @@ def test_iris_scikit_learn_comparison():
 
     """
 
-    print('===============================')
+    print('\n===============================')
     print('=== PROJECT IMPLEMENTATION ====')
     print('===============================')
 
@@ -28,8 +28,8 @@ def test_iris_scikit_learn_comparison():
     project_efficiency_percent = iris.calculate_accuracy(n_folds=2)
 
 
-    print('===============================')
-    print('=========== SKLEARN ===========')
+    print('\n===============================')
+    print('======== SCIKIT-LEARN =========')
     print('===============================')
 
     X, y = load_iris(return_X_y=True)
@@ -41,10 +41,12 @@ def test_iris_scikit_learn_comparison():
     mislabeled_points = (y_test != y_pred).sum()
     sklearn_efficiency_percent = ((num_of_points - mislabeled_points) / num_of_points) * 100
 
-    print(f'Number of mislabeled points out of a total {num_of_points} points : {mislabeled_points}')
-    print(f'Algorithm efficiency: {round(sklearn_efficiency_percent, 5)} %')
+    print(f'\n\nCalculating the scikit-learn algorithm accuracy...')
+    print(f'\nNumber of mislabeled points out of a total {num_of_points} points : {mislabeled_points}')
+    print(f'\nAlgorithm efficiency: {round(sklearn_efficiency_percent, 5)} %')
 
     assert (project_efficiency_percent - sklearn_efficiency_percent) < 10
+
 
 def main():
 

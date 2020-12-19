@@ -24,7 +24,8 @@ def main():
             print('2. Run the Naive Bayes implementation using Pima Indians Diabetes dataset.')
             print('3. Run unit tests.')
             print('4. Run acceptance tests.')
-            print('5. Exit the program.\n')
+            print('5. Show this algorithm vs. scikit-learn comparison.')
+            print('6. Exit the program.\n')
 
         returned_from_function = False
 
@@ -34,8 +35,8 @@ def main():
             print('\n\nGoodbye!\n')
             sys.exit()
 
-        if choice not in ['1', '2', '3', '4', '5']:
-            print('Wrong choice! Please choose option 1-5.')
+        if choice not in ['1', '2', '3', '4', '5', '6']:
+            print('Wrong choice! Please choose option 1-6.')
 
         elif choice == '1':
 
@@ -62,7 +63,9 @@ def main():
         elif choice == '3':
 
             try:
-                output = subprocess.run(f'py.test tests/unit_tests', shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
+                output = subprocess.run(f'py.test tests/unit_tests', shell=True,
+                                        stdout=subprocess.PIPE, universal_newlines=True).stdout
+
                 print(f'{output}')
                 returned_from_function = True
                 continue
@@ -73,7 +76,8 @@ def main():
         elif choice == '4':
 
             try:
-                output = subprocess.run(f'py.test tests/acceptance_tests', shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
+                output = subprocess.run(f'py.test tests/acceptance_tests', shell=True,
+                                        stdout=subprocess.PIPE, universal_newlines=True).stdout
                 print(f'{output}')
                 returned_from_function = True
                 continue
@@ -82,6 +86,18 @@ def main():
                 continue
 
         elif choice == '5':
+
+            try:
+                output = subprocess.run(f'python3 tests/acceptance_tests/test_iris_scikit_learn_comparison.py',
+                                        shell=True, stdout=subprocess.PIPE, universal_newlines=True).stdout
+                print(f'{output}')
+                returned_from_function = True
+                continue
+            except KeyboardInterrupt:
+                returned_from_function = True
+                continue
+
+        elif choice == '6':
 
             print('\n\nGoodbye!\n')
             sys.exit()
